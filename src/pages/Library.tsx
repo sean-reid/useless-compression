@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { FORMATS, MEDIA_TYPES, COUNT_BY_MEDIA } from '@/data/formats'
 import FormatCard from '@/components/FormatCard'
+import { isInteractive, INTERACTIVE } from '@/data/formats/interactive'
 
 export default function Library() {
   const [q, setQ] = useState('')
@@ -12,7 +13,8 @@ export default function Library() {
     const needle = q.trim().toLowerCase()
     return FORMATS.filter((f) => {
       if (media && f.mediaType !== media) return false
-      if (status && f.status !== status) return false
+      if (status === 'interactive' && !isInteractive(f.id)) return false
+      if (status && status !== 'interactive' && f.status !== status) return false
       if (needle && !(`${f.name} ${f.blurb} ${f.tags.join(' ')}`.toLowerCase().includes(needle))) return false
       return true
     })
@@ -71,7 +73,9 @@ export default function Library() {
         <Chip active={status === null} onClick={() => setStatus(null)}>any</Chip>
         <Chip active={status === 'spec'} onClick={() => setStatus('spec')}>spec only</Chip>
         <Chip active={status === 'algorithm'} onClick={() => setStatus('algorithm')}>described</Chip>
-        <Chip active={status === 'interactive'} onClick={() => setStatus('interactive')}>actually runs</Chip>
+        <Chip active={status === 'interactive'} onClick={() => setStatus('interactive')}>
+          actually runs ({Object.keys(INTERACTIVE).length})
+        </Chip>
       </div>
 
       {/* grid */}

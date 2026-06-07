@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import type { CompressionFormat } from '@/data/formats'
+import { isInteractive } from '@/data/formats/interactive'
 
 const MEDIA_COLORS: Record<string, string> = {
   text:     '#fffb00',
@@ -21,7 +22,8 @@ const STATUS_BADGES: Record<string, { label: string; bg: string; fg: string }> =
 export default function FormatCard({ f, rot = 0 }: { f: CompressionFormat; rot?: number }) {
   const bg = MEDIA_COLORS[f.mediaType] ?? '#fff'
   const fg = f.mediaType === 'meta' ? '#fffb00' : '#0a0a0a'
-  const status = STATUS_BADGES[f.status]!
+  const effectiveStatus = isInteractive(f.id) ? 'interactive' : f.status
+  const status = STATUS_BADGES[effectiveStatus]!
   return (
     <Link
       to={`/format/${f.id}`}

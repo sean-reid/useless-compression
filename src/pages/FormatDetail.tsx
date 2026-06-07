@@ -27,7 +27,7 @@ export default function FormatDetail() {
     )
   }
 
-  const Interactive = f.interactiveId ? INTERACTIVE[f.interactiveId] : null
+  const Interactive = INTERACTIVE[f.id] ?? (f.interactiveId ? INTERACTIVE[f.interactiveId] : null)
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
