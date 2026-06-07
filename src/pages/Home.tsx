@@ -12,17 +12,17 @@ import LongBoi from '@/components/LongBoi'
 import Classifieds from '@/components/Classifieds'
 import Interstitial from '@/components/Interstitial'
 
-const CARDS: Array<{ name: string; tag?: string; bg: string; color?: string; rot: number; font?: string }> = [
-  { name: 'MonaLisa.png', tag: 'good', bg: '#a98a40', color: '#fff', rot: -3 },
-  { name: 'YellAlgo', tag: 'QUIET ONES GO', bg: '#ff2ea5', color: '#000', rot: 2 },
-  { name: 'Procrastinator', tag: '(later)', bg: '#00f0ff', color: '#000', rot: -2 },
-  { name: 'JPEG²', tag: '🥵', bg: '#9aff00', color: '#000', rot: 4 },
-  { name: 'Schrödinger.7z', tag: '50 / 50', bg: '#ffeb3b', color: '#000', rot: -4 },
-  { name: 'VinylSim.flac', tag: 'for purists', bg: '#7e1bca', color: '#fff', rot: 1 },
-  { name: 'CRYPTI-ZIP', tag: 'do not open in airport', bg: '#ff8c00', color: '#000', rot: -1 },
-  { name: 'STL→Recipe', tag: 'preheat to 350', bg: '#fff', color: '#000', rot: 3 },
-  { name: 'CSV→Novel', tag: 'they were a row', bg: '#e0e8ff', color: '#000', rot: -2 },
-  { name: 'fmt#884', tag: 'do not feed', bg: '#000', color: '#0f0', rot: 5 },
+const CARDS: Array<{ id: string; name: string; tag?: string; bg: string; color?: string; rot: number }> = [
+  { id: 'mona-lisa-png',   name: 'MonaLisa.png',    tag: 'good',                   bg: '#a98a40', color: '#fff', rot: -3 },
+  { id: 'yell-algo',       name: 'YellAlgo',        tag: 'QUIET ONES GO',          bg: '#ff2ea5', color: '#000', rot: 2 },
+  { id: 'procrastinator',  name: 'Procrastinator',  tag: '(later)',                bg: '#00f0ff', color: '#000', rot: -2 },
+  { id: 'jpeg-squared',    name: 'JPEG²',           tag: '🥵',                      bg: '#9aff00', color: '#000', rot: 4 },
+  { id: 'schrodinger-7z',  name: 'Schrödinger.7z',  tag: '50 / 50',                bg: '#ffeb3b', color: '#000', rot: -4 },
+  { id: 'vinyl-sim',       name: 'VinylSim.flac',   tag: 'for purists',            bg: '#7e1bca', color: '#fff', rot: 1 },
+  { id: 'crypti-zip',      name: 'CRYPTI-ZIP',      tag: 'do not open in airport', bg: '#ff8c00', color: '#000', rot: -1 },
+  { id: 'stl-recipe',      name: 'STL→Recipe',      tag: 'preheat to 350',         bg: '#fff',    color: '#000', rot: 3 },
+  { id: 'csv-novel',       name: 'CSV→Novel.txt',   tag: 'they were a row',        bg: '#e0e8ff', color: '#000', rot: -2 },
+  { id: 'fmt-884',         name: 'fmt#884',         tag: 'do not feed',            bg: '#000',    color: '#0f0', rot: 5 },
 ]
 
 export default function Home() {
@@ -132,7 +132,7 @@ Category: Mostly Informational              april ?, ????`}
             produce feelings. lossy. extremely. citation needed. citation
             still needed.
           </p>
-          <Link to="/format/averagecolor-jpeg" className="block mt-1 text-[12px]">→ the rest of the rfc</Link>
+          <Link to="/format/average-color-jpeg" className="block mt-1 text-[12px]">→ the rest of the rfc</Link>
         </article>
 
         <div className="absolute z-20" style={{ top: 80, right: '3%', transform: 'rotate(2deg)' }}>
@@ -258,8 +258,8 @@ Category: Mostly Informational              april ?, ????`}
         <div className="flex gap-5 px-4 md:px-12 pb-4 pt-4 items-end" style={{ width: 'max-content' }}>
           {CARDS.map((c, i) => (
             <Link
-              to={`/format/${c.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
-              key={i}
+              to={`/format/${c.id}`}
+              key={c.id}
               className="block flex-shrink-0 border-2 border-black p-3 no-underline"
               style={{
                 background: c.bg,
