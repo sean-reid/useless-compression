@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="8" fill="#fbe7ff"/>
+  <text x="32" y="38" text-anchor="middle" font-family="Impact, Anton, sans-serif" font-size="22" fill="#0a0a0a">UC</text>
+  <path d="M10 40 Q 32 28 54 42" stroke="#ff2ea5" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>
