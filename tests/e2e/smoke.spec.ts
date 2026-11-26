@@ -13,11 +13,11 @@ test('home page exposes /library and /about links', async ({ page }) => {
 
 test('B-Compress demo replaces some letters with the B emoji', async ({ page }) => {
   await page.goto('/')
-  const input = page.getByLabel(/type something/i)
+  const input = page.getByLabel(/say a thing/i)
   await input.fill('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
   // not all letters get replaced. some do.
-  const out = page.locator('text=/🅱️/')
-  await expect(out.first()).toBeVisible()
+  const demo = page.locator('div:has(> #bcomp-in)')
+  await expect(demo.getByText('🅱️').first()).toBeVisible()
 })
 
 test('navigate to library and see catalog placeholder', async ({ page }) => {

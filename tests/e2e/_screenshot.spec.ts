@@ -1,4 +1,5 @@
 import { test } from '@playwright/test'
+import { fullPageShot } from './capture'
 
 // utility "test" that captures a screenshot at each viewport.
 // not run in CI — invoke with: pnpm e2e tests/e2e/_screenshot.spec.ts --project=chromium
@@ -17,7 +18,7 @@ for (const vp of viewports) {
     await page.waitForLoadState('networkidle')
     // let the chrome settle for a moment (falling emojis, snails)
     await page.waitForTimeout(2200)
-    await page.screenshot({ path: `screenshots/home-${vp.name}.png`, fullPage: true })
+    await fullPageShot(page, `screenshots/home-${vp.name}.png`)
   })
 
   test(`screenshot home with mail open @ ${vp.name}`, async ({ page }) => {
@@ -33,20 +34,20 @@ for (const vp of viewports) {
     await page.setViewportSize({ width: vp.w, height: vp.h })
     await page.goto('/#/about')
     await page.waitForLoadState('networkidle')
-    await page.screenshot({ path: `screenshots/about-${vp.name}.png`, fullPage: true })
+    await fullPageShot(page, `screenshots/about-${vp.name}.png`)
   })
 
   test(`screenshot library @ ${vp.name}`, async ({ page }) => {
     await page.setViewportSize({ width: vp.w, height: vp.h })
     await page.goto('/#/library')
     await page.waitForLoadState('networkidle')
-    await page.screenshot({ path: `screenshots/library-${vp.name}.png`, fullPage: true })
+    await fullPageShot(page, `screenshots/library-${vp.name}.png`)
   })
 
   test(`screenshot 404 @ ${vp.name}`, async ({ page }) => {
     await page.setViewportSize({ width: vp.w, height: vp.h })
     await page.goto('/#/nope')
     await page.waitForLoadState('networkidle')
-    await page.screenshot({ path: `screenshots/404-${vp.name}.png`, fullPage: true })
+    await fullPageShot(page, `screenshots/404-${vp.name}.png`)
   })
 }
