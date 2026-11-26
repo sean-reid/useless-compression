@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'node:path'
 
-export default defineConfig(({ mode }) => ({
-  base: mode === 'production' ? '/useless-compression/' : '/',
+export default defineConfig({
+  base: '/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -18,4 +18,4 @@ export default defineConfig(({ mode }) => ({
     target: 'es2022',
     sourcemap: true,
   },
-}))
+})
