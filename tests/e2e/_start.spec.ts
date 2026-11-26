@@ -1,4 +1,5 @@
 import { test } from '@playwright/test'
+import { fullPageShot } from './capture'
 
 test('start menu open', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 })
@@ -14,5 +15,5 @@ test('greg tribute page', async ({ page }) => {
   await page.goto('/#/greg')
   await page.waitForLoadState('networkidle')
   await page.waitForTimeout(800)
-  await page.screenshot({ path: 'screenshots/greg-tribute.png', fullPage: true })
+  await fullPageShot(page, 'screenshots/greg-tribute.png')
 })
